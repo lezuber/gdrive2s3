@@ -5,7 +5,7 @@ limit-backup-time
 echo "gdrive2s3: Staring Backup"
 
 # Execute the backup
-rclone sync ${rclone_args} gdrive: s3encrypted:
+rclone sync ${rclone_args} gdrive:${gdrive_path} s3:${s3_bucket}
 
 if [ "$?" == "0" ]; then 
 	echo "gdrive2s3: Backup finished sucessfully"

@@ -1,7 +1,10 @@
 # gdrive2S3
 
-**Fork modifications:
-The container now uses the official rclone docker image**
+**Fork modifications:**
+- the container now uses the official rclone docker image
+- Added some optional GDrive Config Parms
+- Removed rclone encryption
+- Removed s3 location_constraint
 
 ---
 
@@ -36,19 +39,6 @@ docker run -i -t --rm \
   -e s3_access_key=<access_key> \
   -e s3_access_secret=<access_secret> \
   -e s3_region=<region> \
-  -e s3_location=<location> \
-  -e enc_secret1=<secret> \ # Encryption PW
-  -e enc_secret2=<secret> \ # Salt
   -e rclone_args=<additional_arguments_for_rclone> \
   lezuber/gdrive2s3
 ```
-
-## Encryption
-
-This container encrypts your file using rclone's build-in encryption features.
-I consider this to be purely opportunistic and not secure in any way, as I
-can not judge how reliable the encryption is. Your files are definitely not secure
-if you are running the container in a cloud service (like I do), since you have
-to upload both encryption secret and the access token for your Google Drive to
-the service.
-

@@ -8,7 +8,9 @@ cat <<EOF > /config/rclone/rclone.conf
 type = drive
 client_id = ${gdrive_client_id}
 client_secret = ${gdrive_client_secret}
-service_account_file = 
+scope = ${gdrive_scope:-drive.readonly}
+auth_owner_only = ${gdrive_auth_owner_only:-true}
+acknowledge_abuse = ${gdrive_acknowledge_abuse:-false}
 token = ${gdrive_token}
 
 [s3]
@@ -17,19 +19,9 @@ env_auth = ${s3_env_auth:-false}
 access_key_id = ${s3_access_key}
 secret_access_key = ${s3_access_secret}
 region = ${s3_region}
-endpoint = 
-location_constraint = ${s3_location}
 acl = private
-server_side_encryption = 
-storage_class =
-
-[s3encrypted]
-type = crypt
-remote = s3:${s3_bucket}
-filename_encryption = off
-directory_name_encryption = false
-password = ${enc_secret1}
-password2 = ${enc_secret2}
+server_side_encryption = ${s3_server_side_encryption}
+storage_class = ${s3_storage_class}
 
 [local]
 type = local

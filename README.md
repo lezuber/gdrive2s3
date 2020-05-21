@@ -1,5 +1,10 @@
 # gdrive2S3
 
+**Fork modifications:
+The container now uses the official rclone docker image**
+
+---
+
 This repo contains a small Docker container, which I use to backup my Google Drive to AWS S3.
 The container relies on [rclone](https://rclone.org), which does all the
 heavy lifting. I run it as a Scheduled Task on AWS Fargate for a few cents per month,
@@ -35,7 +40,7 @@ docker run -i -t --rm \
   -e enc_secret1=<secret> \ # Encryption PW
   -e enc_secret2=<secret> \ # Salt
   -e rclone_args=<additional_arguments_for_rclone> \
-  paulstaab/gdrive2s3
+  lezuber/gdrive2s3
 ```
 
 ## Encryption
